@@ -22,6 +22,7 @@ module Crunchbase
     attr_reader :created_at
     attr_reader :updated_at
 
+    attr_reader :categories
     attr_reader :competitors
     attr_reader :funding_rounds
     attr_reader :founders
@@ -33,9 +34,8 @@ module Crunchbase
       self.fetch_one permalink
     end
 
-    def self.list(page = 1, order = ORDER_CREATED_AT_DESC, domain_name = nil)
-      r = Crunchbase::fetch(self::RESOURCE_LIST, {page: page, order: order, domain_name: domain})['items']
-      r.map { |i| Relation.new i }
+    def self.list(page = 1, order = ORDER_CREATED_AT_DESC)
+      self.fetch_list page, order
     end
 
     private
@@ -53,7 +53,7 @@ module Crunchbase
 
     def relationships
       %w[
-        competitors funding_rounds founders products acquisitions ipo
+        categories competitors funding_rounds founders products acquisitions ipo
       ]
     end
 
