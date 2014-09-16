@@ -21,8 +21,8 @@ module Crunchbase
     attr_reader :stock_exchange
     attr_reader :created_at
     attr_reader :updated_at
-
     attr_reader :categories
+
     attr_reader :competitors
     attr_reader :funding_rounds
     attr_reader :founders
@@ -42,7 +42,7 @@ module Crunchbase
 
     def property_keys
       %w[
-        description short_description founded_on permalink primary_role is_closed closed_on homepage_url
+        categories description short_description founded_on permalink primary_role is_closed closed_on homepage_url
         name created_at updated_at total_funding_usd number_of_investments number_of_employees stock_symbol stock_exchange
       ]
     end
@@ -53,7 +53,7 @@ module Crunchbase
 
     def relationships
       %w[
-        categories competitors funding_rounds founders products acquisitions ipo
+        competitors funding_rounds founders products acquisitions ipo
       ]
     end
 
